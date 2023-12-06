@@ -16,6 +16,7 @@ import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { JsonFilter } from "../../util/JsonFilter";
 import { IntFilter } from "../../util/IntFilter";
+import { TripListRelationFilter } from "../../trip/base/TripListRelationFilter";
 import { WishlistListRelationFilter } from "../../wishlist/base/WishlistListRelationFilter";
 
 @InputType()
@@ -140,6 +141,18 @@ class ListingWhereInput {
     nullable: true,
   })
   title?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => TripListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => TripListRelationFilter)
+  @IsOptional()
+  @Field(() => TripListRelationFilter, {
+    nullable: true,
+  })
+  trips?: TripListRelationFilter;
 
   @ApiProperty({
     required: false,

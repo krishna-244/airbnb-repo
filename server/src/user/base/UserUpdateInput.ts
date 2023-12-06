@@ -15,8 +15,9 @@ import { IsString, IsOptional, ValidateNested } from "class-validator";
 import { IsJSONValue } from "../../validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
-import { WishlistUpdateManyWithoutUsersInput } from "./WishlistUpdateManyWithoutUsersInput";
+import { TripUpdateManyWithoutUsersInput } from "./TripUpdateManyWithoutUsersInput";
 import { Type } from "class-transformer";
+import { WishlistUpdateManyWithoutUsersInput } from "./WishlistUpdateManyWithoutUsersInput";
 
 @InputType()
 class UserUpdateInput {
@@ -62,6 +63,18 @@ class UserUpdateInput {
     nullable: true,
   })
   roles?: InputJsonValue;
+
+  @ApiProperty({
+    required: false,
+    type: () => TripUpdateManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => TripUpdateManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => TripUpdateManyWithoutUsersInput, {
+    nullable: true,
+  })
+  trips?: TripUpdateManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,

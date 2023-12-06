@@ -15,8 +15,9 @@ import { IsString, IsInt, ValidateNested, IsOptional } from "class-validator";
 import { IsJSONValue } from "../../validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
-import { WishlistCreateNestedManyWithoutListingsInput } from "./WishlistCreateNestedManyWithoutListingsInput";
+import { TripCreateNestedManyWithoutListingsInput } from "./TripCreateNestedManyWithoutListingsInput";
 import { Type } from "class-transformer";
+import { WishlistCreateNestedManyWithoutListingsInput } from "./WishlistCreateNestedManyWithoutListingsInput";
 
 @InputType()
 class ListingCreateInput {
@@ -95,6 +96,18 @@ class ListingCreateInput {
   @IsString()
   @Field(() => String)
   title!: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => TripCreateNestedManyWithoutListingsInput,
+  })
+  @ValidateNested()
+  @Type(() => TripCreateNestedManyWithoutListingsInput)
+  @IsOptional()
+  @Field(() => TripCreateNestedManyWithoutListingsInput, {
+    nullable: true,
+  })
+  trips?: TripCreateNestedManyWithoutListingsInput;
 
   @ApiProperty({
     required: false,

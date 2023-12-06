@@ -1,6 +1,7 @@
 import { StringFilter } from "../../util/StringFilter";
 import { JsonFilter } from "../../util/JsonFilter";
 import { IntFilter } from "../../util/IntFilter";
+import { TripListRelationFilter } from "../trip/TripListRelationFilter";
 import { WishlistListRelationFilter } from "../wishlist/WishlistListRelationFilter";
 
 export type ListingWhereInput = {
@@ -15,5 +16,6 @@ export type ListingWhereInput = {
   placeType?: StringFilter;
   price?: IntFilter;
   title?: StringFilter;
+  trips?: TripListRelationFilter;
   wishlists?: WishlistListRelationFilter;
 };

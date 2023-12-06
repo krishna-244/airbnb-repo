@@ -1,4 +1,5 @@
 import { InputJsonValue } from "../../types";
+import { TripUpdateManyWithoutListingsInput } from "./TripUpdateManyWithoutListingsInput";
 import { WishlistUpdateManyWithoutListingsInput } from "./WishlistUpdateManyWithoutListingsInput";
 
 export type ListingUpdateInput = {
@@ -12,5 +13,6 @@ export type ListingUpdateInput = {
   placeType?: string;
   price?: number;
   title?: string;
+  trips?: TripUpdateManyWithoutListingsInput;
   wishlists?: WishlistUpdateManyWithoutListingsInput;
 };

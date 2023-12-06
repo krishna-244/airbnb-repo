@@ -14,6 +14,7 @@ import { PrismaService } from "../../prisma/prisma.service";
 import {
   Prisma,
   Listing, // @ts-ignore
+  Trip, // @ts-ignore
   Wishlist,
 } from "@prisma/client";
 
@@ -50,6 +51,17 @@ export class ListingServiceBase {
     args: Prisma.SelectSubset<T, Prisma.ListingDeleteArgs>
   ): Promise<Listing> {
     return this.prisma.listing.delete(args);
+  }
+
+  async findTrips(
+    parentId: string,
+    args: Prisma.TripFindManyArgs
+  ): Promise<Trip[]> {
+    return this.prisma.listing
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .trips(args);
   }
 
   async findWishlists(

@@ -10,6 +10,7 @@ import {
   SelectArrayInput,
 } from "react-admin";
 
+import { TripTitle } from "../trip/TripTitle";
 import { WishlistTitle } from "../wishlist/WishlistTitle";
 
 export const ListingEdit = (props: EditProps): React.ReactElement => {
@@ -26,6 +27,14 @@ export const ListingEdit = (props: EditProps): React.ReactElement => {
         <TextInput label="placeType" source="placeType" />
         <NumberInput step={1} label="price" source="price" />
         <TextInput label="title" source="title" />
+        <ReferenceArrayInput
+          source="trips"
+          reference="Trip"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={TripTitle} />
+        </ReferenceArrayInput>
         <ReferenceArrayInput
           source="wishlists"
           reference="Wishlist"

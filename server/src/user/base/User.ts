@@ -16,6 +16,7 @@ import { Type } from "class-transformer";
 import { IsJSONValue } from "../../validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
+import { Trip } from "../../trip/base/Trip";
 import { Wishlist } from "../../wishlist/base/Wishlist";
 
 @ObjectType()
@@ -64,6 +65,15 @@ class User {
   @IsJSONValue()
   @Field(() => GraphQLJSON)
   roles!: JsonValue;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Trip],
+  })
+  @ValidateNested()
+  @Type(() => Trip)
+  @IsOptional()
+  trips?: Array<Trip>;
 
   @ApiProperty({
     required: true,
