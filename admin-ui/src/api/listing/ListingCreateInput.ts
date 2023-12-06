@@ -1,4 +1,5 @@
 import { InputJsonValue } from "../../types";
+import { WishlistCreateNestedManyWithoutListingsInput } from "./WishlistCreateNestedManyWithoutListingsInput";
 
 export type ListingCreateInput = {
   description: string;
@@ -11,4 +12,5 @@ export type ListingCreateInput = {
   placeType: string;
   price: number;
   title: string;
+  wishlists?: WishlistCreateNestedManyWithoutListingsInput;
 };

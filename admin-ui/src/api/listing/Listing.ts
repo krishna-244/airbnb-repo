@@ -1,4 +1,5 @@
 import { JsonValue } from "type-fest";
+import { Wishlist } from "../wishlist/Wishlist";
 
 export type Listing = {
   createdAt: Date;
@@ -14,4 +15,5 @@ export type Listing = {
   price: number;
   title: string;
   updatedAt: Date;
+  wishlists?: Array<Wishlist>;
 };

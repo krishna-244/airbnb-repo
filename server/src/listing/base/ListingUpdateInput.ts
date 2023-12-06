@@ -11,10 +11,12 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsInt } from "class-validator";
+import { IsString, IsOptional, IsInt, ValidateNested } from "class-validator";
 import { IsJSONValue } from "../../validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
+import { WishlistUpdateManyWithoutListingsInput } from "./WishlistUpdateManyWithoutListingsInput";
+import { Type } from "class-transformer";
 
 @InputType()
 class ListingUpdateInput {
@@ -123,6 +125,18 @@ class ListingUpdateInput {
     nullable: true,
   })
   title?: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => WishlistUpdateManyWithoutListingsInput,
+  })
+  @ValidateNested()
+  @Type(() => WishlistUpdateManyWithoutListingsInput)
+  @IsOptional()
+  @Field(() => WishlistUpdateManyWithoutListingsInput, {
+    nullable: true,
+  })
+  wishlists?: WishlistUpdateManyWithoutListingsInput;
 }
 
 export { ListingUpdateInput as ListingUpdateInput };
